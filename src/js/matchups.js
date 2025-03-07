@@ -108,10 +108,34 @@ async function loadMatchupDetails(championName) {
     try {
         console.log('Buscando matchup para:', championName);
         
-        // Adicionar log para depuração
-        console.log('URL da API:', `/.netlify/functions/api/matchups/${encodeURIComponent(championName)}`);
+        // Tratar caso especial para Cho'Gath
+        let apiChampionName = championName;
         
-        const response = await fetch(`/.netlify/functions/api/matchups/${encodeURIComponent(championName)}`);
+        // Se for Chogath, tentar diretamente com o formato Cho'Gath primeiro
+        if (championName === 'Chogath') {
+            console.log('Caso especial detectado para Cho\'Gath, tentando formato com apóstrofo primeiro');
+            apiChampionName = "Cho'Gath";
+            
+            // Adicionar log para depuração
+            console.log('URL da API (formato alternativo):', `/.netlify/functions/api/matchups/${encodeURIComponent(apiChampionName)}`);
+            
+            const alternativeResponse = await fetch(`/.netlify/functions/api/matchups/${encodeURIComponent(apiChampionName)}`);
+            console.log('Status da resposta (formato alternativo):', alternativeResponse.status, alternativeResponse.statusText);
+            
+            if (alternativeResponse.ok) {
+                console.log('Formato alternativo funcionou!');
+                return await processMatchupResponse(alternativeResponse, championName);
+            }
+            
+            // Se o formato alternativo falhar, voltar para o formato original
+            console.log('Formato alternativo falhou, tentando formato original');
+            apiChampionName = championName;
+        }
+        
+        // Adicionar log para depuração
+        console.log('URL da API:', `/.netlify/functions/api/matchups/${encodeURIComponent(apiChampionName)}`);
+        
+        const response = await fetch(`/.netlify/functions/api/matchups/${encodeURIComponent(apiChampionName)}`);
         console.log('Status da resposta:', response.status, response.statusText);
         
         if (!response.ok) {
@@ -120,6 +144,18 @@ async function loadMatchupDetails(championName) {
             throw new Error(`Erro ao buscar matchup: ${response.status} ${response.statusText}`);
         }
 
+        return await processMatchupResponse(response, championName);
+    } catch (error) {
+        console.error('Erro ao carregar detalhes do matchup:', error);
+        console.error('Mensagem de erro:', error.message);
+        console.error('Stack trace:', error.stack);
+        showError('Erro ao carregar os detalhes do matchup. Por favor, tente novamente.');
+    }
+}
+
+// Função para processar a resposta da API de matchup
+async function processMatchupResponse(response, championName) {
+    try {
         const matchup = await response.json();
         console.log('Dados do matchup recebidos:', matchup);
         
