@@ -1,4 +1,4 @@
-# Creamousbebe
+# creamousbebe
 
 Aplicação web para gerenciamento de matchups de League of Legends.
 
