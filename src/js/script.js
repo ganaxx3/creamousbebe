@@ -6,7 +6,7 @@ let supabase;
 async function initializeSupabase() {
     try {
         // Buscar as variáveis de ambiente do backend
-        const response = await fetch('/env');
+        const response = await fetch('/.netlify/functions/api/env');
         if (!response.ok) {
             throw new Error('Erro ao buscar variáveis de ambiente');
         }
