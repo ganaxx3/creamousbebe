@@ -3,7 +3,7 @@ const topChampions = [
     { name: 'Aatrox', apiName: 'Aatrox' },
     { name: 'Akali', apiName: 'Akali' },
     { name: 'Camille', apiName: 'Camille' },
-    { name: 'Cho\'Gath', apiName: 'Chogath' },
+    { name: 'Chogath', apiName: 'Chogath' },
     { name: 'Darius', apiName: 'Darius' },
     { name: 'Fiora', apiName: 'Fiora' },
     { name: 'Gangplank', apiName: 'Gangplank' },
