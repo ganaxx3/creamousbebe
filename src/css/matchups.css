@@ -1,0 +1,263 @@
+/* ==================== DESIGN MODERNO (ESTILO IPHONE) ==================== */
+
+:root {
+    --primary-color: #00bcd4; /* Azul vibrante */
+    --secondary-color: #0097a7; /* Azul escuro */
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --error-color: #ff4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+/* ==================== HEADER ==================== */
+
+.header-buttons {
+    display: flex; /* Define o layout como flexbox */
+    align-items: center; /* Alinha os botões verticalmente */
+    gap: 5px; /* Espaçamento fixo de 20px entre os botões */
+}
+
+header {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2em;
+}
+
+#logoutButton {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#logoutButton:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+#configButton {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#configButton:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+/* ==================== QUADRADO CENTRALIZADO (GRADE DE CAMPEÕES) ==================== */
+.champions-container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    width: 100%;
+    max-width: 1200px;
+    height: 60vh; /* Altura fixa */
+    overflow: hidden; /* Esconde o conteúdo que excede */
+    margin: 0 auto 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.champions-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 75px); /* 5 colunas fixas com largura de 120px */
+    gap: 10px;
+    padding: 20px;
+    height: 100%; /* Ocupa toda a altura do contêiner */
+    overflow-y: auto; /* Scroll vertical */
+    scrollbar-width: thin; /* Barra de rolagem fina */
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent; /* Cor da barra */
+    justify-content: center; /* Centraliza a grade horizontalmente */
+}
+
+.champion-card {
+    width: 80px; /* Largura fixa */
+    height: 80px; /* Altura fixa */
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px; /* Bordas arredondadas */
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.champion-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.champion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra ao passar o mouse */
+}
+
+.champion-card:hover::before {
+    opacity: 1; /* Efeito de brilho */
+}
+
+.champion-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.champion-card:hover img {
+    transform: scale(1.1); /* Ampliação da imagem */
+}
+
+/* ==================== DICAS DE MATCHUPS (ABAIXO DO QUADRADO) ==================== */
+.matchup-details {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px; /* Bordas arredondadas */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.matchup-details.show {
+    display: block;
+}
+
+.matchup-content {
+    color: white;
+    text-align: center; /* Centraliza todo o conteúdo */
+}
+
+.champion-title {
+    font-size: 2em;
+    color: #00bcd4; /* Azul vibrante */
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.separator {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+.info-section {
+    margin-bottom: 20px;
+    text-align: center; /* Centraliza cada seção */
+}
+
+.info-section h3 {
+    color: #00bcd4; /* Azul vibrante */
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.description {
+    line-height: 1.6;
+    color: #ddd;
+    font-size: 1.3em;
+    text-align: center; /* Centraliza o texto */
+}
+
+.spells-container {
+    display: flex;
+    justify-content: center; /* Centraliza os itens */
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.spell-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.spell-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px; /* Bordas arredondadas */
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.spell-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra ao passar o mouse */
+}
+
+.spell-name {
+    font-size: 0.8em;
+    color: #ddd;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.difficulty {
+    font-size: 1.3em;
+    color: #ddd;
+    text-transform: capitalize;
+    text-align: center; /* Centraliza o texto */
+}
+
+.runes-container {
+    display: flex;
+    justify-content: center; /* Centraliza os itens */
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.rune-image {
+    width: 500px; /* Aumentado o tamanho da runa */
+    height: 400px; /* Aumentado o tamanho da runa */
+    border-radius: 15px; /* Bordas arredondadas */
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rune-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra ao passar o mouse */
+}

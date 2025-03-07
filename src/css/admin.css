@@ -1,0 +1,529 @@
+/* ==================== DESIGN MODERNO (ESTILO IPHONE) ==================== */
+
+:root {
+    --primary-color: #00bcd4; /* Azul vibrante */
+    --secondary-color: #0097a7; /* Azul escuro */
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --error-color: #ff4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+/* ==================== CONTÊINER PRINCIPAL ==================== */
+.admin-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 30px; /* Bordas arredondadas */
+    backdrop-filter: blur(10px); /* Efeito de desfoque */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    padding: 30px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Coluna esquerda para lista e botão */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+
+/* ==================== BOTÃO DE ADICIONAR CAMPEÃO ==================== */
+.add-champion-button {
+    width: 350px; /* Mesma largura da lista de campeões */
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-champion-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.add-champion-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#addChampionButton {
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    pointer-events: none; /* Impede que o botão capture eventos de clique separadamente */
+}
+
+.add-champion-button:hover #addChampionButton {
+    background-color: #45a049;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.add-champion-button span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+    pointer-events: none; /* Impede que o texto capture eventos de clique separadamente */
+}
+
+/* ==================== BOTÃO DE ADICIONAR CONTA ==================== */
+.add-account-button {
+    width: 350px; /* Mesma largura da lista de campeões */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-account-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.add-account-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#addAccountButton {
+    width: 40px;
+    height: 40px;
+    background-color: #2196F3; /* Azul para diferenciar do botão verde */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    pointer-events: none; /* Impede que o botão capture eventos de clique separadamente */
+}
+
+.add-account-button:hover #addAccountButton {
+    background-color: #0b7dda;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.add-account-button span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+    pointer-events: none; /* Impede que o texto capture eventos de clique separadamente */
+}
+
+/* ==================== LISTA DE CAMPEÕES ==================== */
+.champions-list {
+    width: 350px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 20px;
+    height: calc(100vh - 150px);
+    overflow-y: auto;
+    scrollbar-width: thin; /* Barra de rolagem fina */
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent; /* Cor da barra */
+}
+
+.champions-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.champions-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.champions-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.champion-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 15px; /* Bordas arredondadas */
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.champion-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.champion-item.active {
+    background: rgba(0, 188, 212, 0.2); /* Destaque azul */
+    border-left: 4px solid var(--primary-color);
+}
+
+.champion-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px; /* Bordas arredondadas */
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.champion-name {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/* ==================== FORMULÁRIO DE MATCHUPS ==================== */
+.matchup-form {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 30px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra interna */
+}
+
+.matchup-form h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px; /* Bordas arredondadas */
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* ==================== SPELLS ==================== */
+.spells-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px; /* Bordas arredondadas */
+}
+
+.spell-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 8px;
+    border-radius: 10px; /* Bordas arredondadas */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.spell-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.spell-item.selected {
+    background: rgba(0, 188, 212, 0.2); /* Destaque azul */
+    border: 2px solid var(--primary-color);
+}
+
+.spell-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px; /* Bordas arredondadas */
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.spell-item span {
+    font-size: 12px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* ==================== RUNAS ==================== */
+.runes-container {
+    display: flex;
+    gap: 40px; /* Espaçamento entre as runas */
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.05); /* Fundo semi-transparente */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 20px; /* Bordas arredondadas */
+    flex-wrap: wrap; /* Permite que as runas quebrem para a próxima linha */
+    justify-content: center; /* Centraliza as runas horizontalmente */
+}
+
+.rune-option {
+    width: 250px; /* Largura fixa */
+    height: 250px; /* Altura fixa */
+    background: rgba(255, 255, 255, 0.05); /* Fundo semi-transparente */
+    border-radius: 15px; /* Bordas arredondadas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Efeito suave */
+    border: 2px solid transparent; /* Borda inicial transparente */
+}
+
+.rune-option:hover {
+    transform: scale(1.05); /* Aumenta ligeiramente ao passar o mouse */
+    background: rgba(255, 255, 255, 0.1); /* Fundo mais claro no hover */
+}
+
+.rune-option.selected {
+    background: rgba(0, 188, 212, 0.2); /* Fundo azul semi-transparente */
+    border: 2px solid var(--primary-color); /* Borda azul */
+}
+
+.rune-option img {
+    width: 200px; /* Tamanho da imagem */
+    height: 200px; /* Tamanho da imagem */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+.rune-option span {
+    font-size: 14px; /* Tamanho do texto */
+    text-align: center; /* Centraliza o texto */
+    color: var(--text-color); /* Cor do texto */
+    margin-top: 10px; /* Espaçamento entre a imagem e o texto */
+    font-weight: 500; /* Peso da fonte */
+}
+
+/* ==================== DIFICULDADE ==================== */
+.difficulty-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.difficulty-option {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px; /* Bordas arredondadas */
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.difficulty-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.difficulty-option.active {
+    background: rgba(0, 188, 212, 0.2); /* Destaque azul */
+    border: 2px solid var(--primary-color);
+}
+
+/* ==================== BOTÃO SALVAR ==================== */
+.save-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 15px; /* Bordas arredondadas */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.save-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra ao passar o mouse */
+}
+
+/* ==================== MODAL ==================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content .form-group {
+    margin-bottom: 20px;
+}
+
+.modal-content .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.modal-content .form-input,
+.modal-content .form-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.modal-content .form-input:focus,
+.modal-content .form-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.2);
+}
+
+.modal-content .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.modal-buttons button {
+    padding: 12px 25px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.modal-buttons button:first-child {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+.modal-buttons button:last-child {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.modal-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons button:active {
+    transform: translateY(1px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}

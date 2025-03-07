@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Dr Mundo Matchups</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <!-- Contêiner principal -->
+    <div class="admin-container">
+        <div class="left-column">
+            <!-- Lista de campeões -->
+            <div class="champions-list" id="championsList">
+                <!-- Lista de campeões será preenchida via JavaScript -->
+            </div>
+            
+            <!-- Botão de adicionar campeão modificado -->
+            <div class="add-champion-button">
+                <button id="addChampionButton">+</button>
+                <span>Adicionar novo Campeão</span>
+            </div>
+            
+            <!-- Botão de adicionar conta -->
+            <div class="add-account-button">
+                <button id="addAccountButton">+</button>
+                <span>Adicionar Conta</span>
+            </div>
+        </div>
+
+        <!-- Formulário de configuração de matchup -->
+        <div class="matchup-form" id="matchupForm">
+            <h2>Configuração de Matchup</h2>
+
+            <!-- Nome do campeão -->
+            <div class="form-group">
+                <label>Nome do Campeão</label>
+                <input type="text" id="championName" readonly>
+            </div>
+
+            <!-- Imagem do campeão -->
+            <div class="form-group">
+                <label>Imagem do Campeão</label>
+                <input type="text" id="championImage" placeholder="URL da imagem" readonly>
+                <img id="championImagePreview" alt="Prévia da imagem" style="max-width: 100px; max-height: 100px; margin-top: 10px; display: none;">
+            </div>
+
+            <!-- Descrição -->
+            <div class="form-group">
+                <label>Descrição</label>
+                <textarea id="description" placeholder="Descreva como jogar contra este campeão"></textarea>
+            </div>
+
+            <!-- Spells -->
+            <div class="form-group">
+                <label>Spells</label>
+                <div class="spells-container" id="spellsContainer">
+                    <!-- Spells serão preenchidas via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Runas -->
+            <div class="runes-container" id="runesContainer">
+                <div class="rune-option" data-rune-id="principal">
+                    <img src="assets/runes/runa_principal.png" alt="Runa Principal">
+                    <span>Runa Principal</span>
+                </div>
+                <div class="rune-option" data-rune-id="lategame">
+                    <img src="assets/runes/runa_lategame.png" alt="Runa Late Game">
+                    <span>Runa Late Game</span>
+                </div>
+                <div class="rune-option" data-rune-id="poke">
+                    <img src="assets/runes/runa_poke.png" alt="Runa Poke">
+                    <span>Runa Poke</span>
+                </div>
+            </div>
+
+            <!-- Dificuldade -->
+            <div class="form-group">
+                <label>Dificuldade</label>
+                <div class="difficulty-selector">
+                    <div class="difficulty-option" data-difficulty="easy">Fácil</div>
+                    <div class="difficulty-option" data-difficulty="medium">Médio</div>
+                    <div class="difficulty-option" data-difficulty="hard">Difícil</div>
+                </div>
+            </div>
+
+            <!-- Botão de salvar -->
+            <button class="save-button" id="saveButton">Salvar Configuração</button>
+        </div>
+    </div>
+
+    <!-- Contêiner de notificações -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>
