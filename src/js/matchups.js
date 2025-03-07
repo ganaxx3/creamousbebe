@@ -109,9 +109,9 @@ async function loadMatchupDetails(championName) {
         console.log('Buscando matchup para:', championName);
         
         // Adicionar log para depuração
-        console.log('URL da API:', `/api/matchups/${encodeURIComponent(championName)}`);
+        console.log('URL da API:', `/.netlify/functions/api/matchups/${encodeURIComponent(championName)}`);
         
-        const response = await fetch(`/api/matchups/${encodeURIComponent(championName)}`);
+        const response = await fetch(`/.netlify/functions/api/matchups/${encodeURIComponent(championName)}`);
         console.log('Status da resposta:', response.status, response.statusText);
         
         if (!response.ok) {
@@ -238,4 +238,4 @@ function initializeApp() {
 }
 
 // Iniciar o aplicativo quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', initializeApp); 
+document.addEventListener('DOMContentLoaded', initializeApp);
