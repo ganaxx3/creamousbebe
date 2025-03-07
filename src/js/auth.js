@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (session.user.role === 'admin' && configButton) {
         configButton.style.display = 'inline-block';
         configButton.addEventListener('click', () => {
-            window.location.href = '/admin.html';
+            window.location.href = '/admin';
         });
     }
 
