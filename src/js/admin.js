@@ -16,7 +16,7 @@ async function initializeSupabase() {
             throw new Error('O script do Supabase não foi carregado corretamente.');
         }
 
-        const response = await fetch('/env');
+        const response = await fetch('/.netlify/functions/api/env');
         if (!response.ok) {
             throw new Error('Erro ao buscar variáveis de ambiente');
         }
